@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0c231c">
+<title>Fathullokhuja &amp; Shukronakhon · 08.12.2026</title>
+<meta name="description" content="Свадьба Fathullokhuja и Shukronakhon — 8 декабря 2026 года, 18:00, ресторан «Зикриддин».">
+<meta property="og:title" content="Fathullokhuja &amp; Shukronakhon · 08.12.2026">
+<meta property="og:description" content="С любовью приглашаем вас разделить с нами самый счастливый день нашей жизни.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2a22'/%3E%3Ccircle cx='25' cy='32' r='13' fill='none' stroke='%23e6cc94' stroke-width='3'/%3E%3Ccircle cx='39' cy='32' r='13' fill='none' stroke='%23e6cc94' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+
+<script>
+  /*
+   * ───────── Настройки приглашения ─────────
+   * mapUrl   — ссылка на карту для кнопки «Показать на карте» (ссылка из Яндекс Карт на ресторан «Зикриддин»).
+   * dateISO  — дата и время начала торжества (для обратного отсчёта).
+   */
+  window.WEDDING_CONFIG = {
+    mapUrl: 'https://yandex.ru/maps/-/CXCtQ-Mp',
+    dateISO: '2026-12-08T18:00:00'
+  };
+</script>
+</head>
+<body>
+
+<!-- Живой фон: шёлк, который меняет цвет от утра к вечеру (WebGL) -->
+<div id="bgFallback" aria-hidden="true"></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<!-- Занавес: открывается сам от первой прокрутки или касания -->
+<div id="gate">
+  <button id="openBtn" type="button" aria-label="Открыть приглашение">
+    <svg class="gate-orbit" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="96" class="o1"/>
+      <circle cx="100" cy="100" r="84" class="o2"/>
+      <circle cx="100" cy="4" r="3" class="o3"/>
+    </svg>
+    <span class="gate-mono" aria-hidden="true">F<i>&amp;</i>S</span>
+  </button>
+  <p class="gate-hint" aria-hidden="true"><span>листайте</span><i></i></p>
+</div>
+
+<main id="story">
+
+  <!-- S-образная линия через всю историю и живой цветок, который скользит по ней -->
+  <svg id="vine" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="vineGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+        <stop offset="0" stop-color="#a8823e"/>
+        <stop offset=".5" stop-color="#d9b86c"/>
+        <stop offset="1" stop-color="#e9cf96"/>
+      </linearGradient>
+    </defs>
+    <path id="vinePath" d="M0 0"/>
+    <path id="vineEcho" d="M0 0"/>
+  </svg>
+  <canvas id="bloom" aria-hidden="true"></canvas>
+
+  <!-- 1 · Имена -->
+  <section class="sec sec-names light" id="names" data-name="Имена">
+    <div class="names-wrap">
+      <svg class="rings rv" viewBox="0 0 120 60" aria-hidden="true">
+        <circle cx="44" cy="30" r="22" pathLength="1"/>
+        <circle cx="76" cy="30" r="22" pathLength="1"/>
+      </svg>
+      <h1 class="names">
+        <span class="amp" aria-hidden="true">&amp;</span>
+        <span class="nm nm-1 write" style="--d:.2s">Fathullokhuja</span>
+        <span class="sr">и</span>
+        <span class="nm nm-2 write" style="--d:1.5s">Shukronakhon</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- 2 · Слова (загораются одно за другим) -->
+  <section class="sec sec-words light" id="words" data-name="Слова">
+    <div class="pin">
+      <p class="words" id="wordsP">С <em>любовью</em> приглашаем вас разделить с нами самый <em>счастливый день</em> нашей жизни</p>
+    </div>
+  </section>
+
+  <!-- 3 · Дата -->
+  <section class="sec sec-date light" id="date" data-name="Дата">
+    <div class="poster" aria-label="8 декабря 2026 года, вторник">
+      <div class="p-row p-day">
+        <span class="num rv">08</span>
+        <span class="tag rv" style="--d:.5s">вторник</span>
+      </div>
+      <div class="p-row p-month">
+        <span class="tag rv" style="--d:.65s">декабрь</span>
+        <span class="num outline rv" style="--d:.15s">12</span>
+      </div>
+      <div class="p-row p-year">
+        <span class="num rv" style="--d:.3s">2026</span>
+      </div>
+    </div>
+    <div class="countdown rv" style="--d:.9s" aria-live="off">
+      <div class="cd"><b data-cd="d">00</b><span data-cdl="d">дней</span></div>
+      <div class="cd"><b data-cd="h">00</b><span data-cdl="h">часов</span></div>
+      <div class="cd"><b data-cd="m">00</b><span data-cdl="m">минут</span></div>
+      <div class="cd"><b data-cd="s">00</b><span data-cdl="s">секунд</span></div>
+    </div>
+  </section>
+
+  <!-- 4 · Время (стрелки сами бегут к 18:00) -->
+  <section class="sec sec-time dark" id="time" data-name="Время">
+    <div class="pin">
+      <div class="time-wrap">
+        <p class="label rv">начало торжества</p>
+        <div class="clock rv" style="--d:.15s">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="97" class="c-ring"/>
+            <g id="ticks"></g>
+            <circle id="sunBead" cx="100" cy="3" r="2.6" class="c-bead"/>
+            <line id="hHand" x1="100" y1="108" x2="100" y2="52" class="c-hand h"/>
+            <line id="mHand" x1="100" y1="112" x2="100" y2="22" class="c-hand m"/>
+            <line id="sHand" x1="100" y1="118" x2="100" y2="14" class="c-hand s"/>
+            <circle cx="100" cy="100" r="3.2" class="c-pin"/>
+          </svg>
+        </div>
+        <p class="readout rv" style="--d:.3s" aria-label="18:00"><span id="clockTxt">18:00</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Место -->
+  <section class="sec sec-place dark" id="place" data-name="Место">
+    <div class="place-wrap">
+      <p class="label rv">место проведения</p>
+      <p class="place-kind rv" style="--d:.15s">ресторан</p>
+      <h2 class="place-name write" style="--d:.35s"><span class="q">«</span>Зикриддин<span class="q">»</span></h2>
+      <span class="hair rv" style="--d:1.4s"></span>
+      <p class="place-quote rv" style="--d:1.6s">С&nbsp;нетерпением ждём встречи с&nbsp;вами!</p>
+      <a class="btn rv" style="--d:1.9s" id="mapBtn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        Показать на карте
+      </a>
+    </div>
+  </section>
+
+  <!-- 6 · Финал -->
+  <section class="sec sec-final dark" id="final" data-name="Финал">
+    <div class="final-wrap">
+      <p class="final-quote rv">Будем счастливы видеть вас среди наших дорогих гостей!</p>
+      <div class="sign rv" style="--d:.5s">
+        <span class="sign-pre">искренне ваши</span>
+        <span class="sign-mono">F <i>&amp;</i> S</span>
+      </div>
+      <div class="actions rv" style="--d:.9s">
+        <button class="ghost" id="shareBtn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>
+          Поделиться
+        </button>
+        <button class="ghost" id="topBtn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>
+          Наверх
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<nav id="rail" aria-label="Разделы приглашения"></nav>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="bloom.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
